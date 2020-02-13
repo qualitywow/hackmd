@@ -1,0 +1,75 @@
+# Ultra Reliable and Low Latency Communications in 5G Downlink: Physical Layer Aspects
+###### tags: `5G`
+## III. URLLC Service Requirements
+### A. Latency Requirement
+![](https://i.imgur.com/p62hAKR.png)
+
+Physical layer latency $T_L = T_{ttt} + T_{prop} + T_{proc} + T_{retx} + T_{sig}$
+
+$T_{ttt}$: 傳輸延遲
+$T_{prop}$: 實際傳輸
+$T_{proc}$: 編碼解碼
+$T_{retx}$: 重送時間
+$T_{sig}$: 傳送前的訊號交換
+
+3GPP決定URLLC在L2/L3的平均延遲要小於0.5ms
+$T_{ttt}$在4G是1ms，要推出能減少到幾百μs的frame structure
+花在channel estimation/feedback的時間也可能會是URLLC傳輸的瓶頸
+需要思考不依賴channel information的傳輸方案
+
+### B. Ultra-High Reliability
+使4G達到99%可靠度的元素：
+(1)channel coding (2)partial re-transmission of erroneous transport block 
+<!-- convolution and Turbo code -->
+<!-- HARQ(hybrid automatic repeat request) -->
+URLLC要大幅度改進，可靠度須達99.999%。
+若是自駕車、遠端手術則reliability只允許$10^{-7}$的錯誤
+
+為了達成標準首先要改進通道預估的準確度(channel estimation accuracy)
+因為對短封包channel coding帶來的好處比較少，因此要盡量避免通道預估所帶來的損失。
+這可以透過在pilot加更多資源，並採用進階的通道預估技術來做到。
+
+即使在上述情況下，還是可能無法達到URLLC的標準，
+因此要往頻率、天線、空間等方面增加資源來提高可靠性。
+此外，應該要採用適合短封包傳輸的進階通道編碼方法(advenced channel coding scheme)。
+在time slot長度非常短的情況下，使用時域資源的重複傳輸方案也是可行的。
+
+### C. Coexistence with eMBB and mMTC
+![](https://i.imgur.com/mdOSmGx.png)
+
+只要有URLLC的服務請求，不管現在是排給eMBB或mMTC傳輸，都要馬上把URLLC封包傳出去。
+這樣一來會使得非URLLC的為此受影響，應該要有一個機制來保護這些本來在進行中的服務。
+
+## IV. URLLC Physical layer in 5G NR
+5G NR 在系統、延遲、可靠度、吞吐量的需求應從基底的實體層架構(packer, slot, frame)改變。
+對延遲敏感(latency-sensitive)封包，需要一種以**快速的解碼過程**及**彈性的frame架構**，支援因延遲需求動態改變的資源。
+
+URLLC服務一啟動，URLLC封包就要立刻傳出去，不能有任何延遲。因此需要一個**排程**的方法來最小化URLLC封包的傳輸延遲。
+
+除非每個封包的**傳輸時間間隔**(Transmission Time Interval, TTI)非常短，否則基於HARQ的重送方法可能無法滿足延遲需求，故需要有一個能大量降低重送延遲的機制。
+
+可以採取 **使用多個無線電介面** 來減少延遲的方法。
+這種方法的基本想法是在4G LTE、5G NR、WiFi等其他IEEE 802.x標準在內的所有可能選項中選能提供最小延遲的無線電接入技術(radio access technology, RAT)。
+把此做法結合D2D通訊，將可以大大降低network layer延遲。
+
+
+**物理層解決方案**
+- 使延遲最小化的packet, frame structure
+- 使URLLC與eMBB、mMTC複用方案，解決共存問題的方法
+
+作者：可靠性的提高 與 延遲的減少 對URLLC的成功同等重要。
+3GPP：**優先考慮延遲減少的問題**，因為可靠性的提高可以靠4G技術來實現(e.g. channel coding, antenna, space, frequencydiversity schemes)，但減少延遲卻不能這樣就實現。
+
+
+### A. Packet Structure
+最關鍵的問題是URLLC封包
+
+
+### B. Frame Structure and Latency-sensitive Scheduling Schemes
+### C. Solutions to the Coexistence Problem
+## V. Conclusion
+
+
+
+
+
