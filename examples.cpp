@@ -31,10 +31,7 @@ void ran_gen(int * list, int n) {
     } // for
     cout << endl;
 } // ran_gen()
-/*
-sudo dpkg -i *17.12*.deb
-sudo apt-get install -f
-*/
+
 int main() {
     // int list[10] = {1, 3, 5, 2, 7, 4, 8, 6, 0, 9};
 
