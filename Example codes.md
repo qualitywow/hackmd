@@ -3,7 +3,6 @@
 
 ##### Program 1.1: Allocation and deallocation of memory
 ```=c
-// Program 1.1
 int i, *pi;
 float f, *pf;
 i = (int *) malloc(sizeof(int));
