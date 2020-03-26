@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <vector>
 using namespace std;
 
 void SelectionSort(int list[], int n) {
@@ -107,9 +108,57 @@ int Horner_R(int a[], int n, int x, int pow) {
     return ans;
 } // Horner_R()
 
+void PrintVecVecBool(vector<vector<bool>> bv) {
+    for (int i = 0; i < bv.size(); i++) {
+        for (int j = 0; j < bv[i].size(); j++) {
+            cout << bv[i][j] << " ";
+        } // for
+        cout << endl;
+    } // for
+} // PrintVecVecBool()
+
+void BoolCombination(int i, int n, vector<vector<bool>> & ans) {
+    if (i == n)
+        return;
+    else if (i == 0) {
+        vector<bool> v;
+        v.push_back(true);
+        ans.push_back(v);
+
+        v.clear();
+        v.push_back(false);
+        ans.push_back(v);
+
+        BoolCombination(i+1, n, ans);
+    } // else if
+    else { // (i < n)
+        vector<vector<bool>> new_ans;
+        for (int j = 0; j < ans.size(); j++) {
+            ans[j].push_back(true);
+            new_ans.push_back(ans[j]);
+            ans[j].pop_back();
+            ans[j].push_back(false);
+            new_ans.push_back(ans[j]);
+        } // for
+        // PrintVecVecBool(new_ans);
+        ans = new_ans;
+        delete &new_ans;
+        BoolCombination(i+1, n, ans);
+    } // else
+
+} // BoolCombination()
+
+void PrintAscending(int x, int y, int z) {
+    int arr[3] = {x, y, z};
+    SelectionSort(arr, 3);
+    for (int i = 0; i < 3; i++)
+        cout << arr[i] << " ";
+    cout << endl;
+} // PrintAscending()
+
 int main() {
-    const int n = 10;
-    int list[n] = {1, 2, 3, 4, 5};
+    // const int n = 10;
+    // int list[n] = {1, 2, 3, 4, 5};
 
     // RanGen(list, n);
 
@@ -128,7 +177,21 @@ int main() {
     // Permutation(list, 0, 2);
     // Permutation(list+2, 0, 2);
 
-    int a[4] = {2, -6, 2, -1};
-    cout << Horner(a, 4, 3) << endl;
-    cout << Horner_R(a, 4, 3, 1) << endl;
+    // int a[4] = {2, -6, 2, -1};
+    // cout << Horner(a, 4, 3) << endl;
+    // cout << Horner_R(a, 4, 3, 1) << endl;
+
+    // int n = 5;
+    // vector<vector<bool>> ans;
+    // BoolCombination(0, n, ans);
+    // PrintVecVecBool(ans);
+
+    // PrintAscending(6, 3, 5);
+
+    // Pigeon hole principle
+    // no idea to write a program but
+    // there's an example comming up
+    // a != b, f(a) = f(b) = 1
+    // f(x) = x / 10;
+    // the range of a and b is 10 ~ 19
 } // main()
