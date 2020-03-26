@@ -156,6 +156,69 @@ void PrintAscending(int x, int y, int z) {
     cout << endl;
 } // PrintAscending()
 
+bool IsSumOfDivisors(int n) {
+    vector<int> divisors;
+    for (int i = 1; i < n; i++)
+        if (n % i == 0)
+            divisors.push_back(i);
+
+    int k = 0;
+    for (int i = 0; i < divisors.size(); i++)
+        k += divisors[i];
+
+    if (k == n)
+        return true;
+    else
+        return false;
+} // IsSumOfDivisors()
+
+int Factorial(int n) {
+    int ans = 1;
+    for (int i = 1; i <= n; i++)
+        ans *= i;
+    return ans;
+} // Factorial()
+
+int Factorial_R(int n) {
+    int ans = 1;
+    if (n == 0)
+        return ans;
+    else
+        ans = n * Factorial_R(n-1);
+} // Factorial_R()
+
+int Fibonacci(int n) {
+    vector<int> fib;
+    fib.push_back(0);
+    fib.push_back(1);
+    for (int i = 2; i <= n; i++)
+        fib.push_back(fib[i-1]+fib[i-2]);
+    return fib[n];
+} // Fibonacci()
+
+int Fibonacci_R(int n) {
+    if (n == 0) return 0;
+    else if (n == 1) return 1;
+    else
+        return Fibonacci_R(n-1) + Fibonacci_R(n-2);
+} // Fibonacci_R()
+
+int BinomialCoefficient(int n, int k) {
+
+} // BinomialCoefficient()
+
+int BinomialCoefficient_R(int n, int k) {
+    int ans = 0;
+    if (k == 0 || k == n) return 1;
+    else {
+        ans = ans
+            + BinomialCoefficient_R(n-1, k)
+            + BinomialCoefficient_R(n-1, k-1);
+    } // else
+
+    return ans;
+} // BinomialCoefficient_R()
+
 int main() {
     // const int n = 10;
     // int list[n] = {1, 2, 3, 4, 5};
@@ -185,13 +248,32 @@ int main() {
     // vector<vector<bool>> ans;
     // BoolCombination(0, n, ans);
     // PrintVecVecBool(ans);
+    /// 想想看真值表該怎麼產生，再重寫
 
     // PrintAscending(6, 3, 5);
 
     // Pigeon hole principle
     // no idea to write a program but
-    // there's an example comming up
+    // there's an example coming up
     // a != b, f(a) = f(b) = 1
     // f(x) = x / 10;
     // the range of a and b is 10 ~ 19
+
+    // cout << IsSumOfDivisors(5) << endl;
+    // cout << IsSumOfDivisors(6) << endl;
+    // cout << IsSumOfDivisors(27) << endl;
+    // cout << IsSumOfDivisors(28) << endl;
+
+    // cout << Factorial(5) << endl;
+    // cout << Factorial_R(5) << endl;
+    // cout << Factorial(10) << endl;
+    // cout << Factorial_R(10) << endl;
+
+    // cout << Fibonacci(10) << endl;
+    // cout << Fibonacci_R(10) << endl;
+    // cout << Fibonacci(14) << endl;
+    // cout << Fibonacci_R(14) << endl;
+
+    cout << BinomialCoefficient_R(4, 2) << endl;
+    cout << BinomialCoefficient_R(10, 3) << endl;
 } // main()
