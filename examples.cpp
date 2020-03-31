@@ -219,6 +219,51 @@ int BinomialCoefficient_R(int n, int k) {
     return ans;
 } // BinomialCoefficient_R()
 
+class NaturalNumber {
+    public:
+        int nn;
+
+        NaturalNumber(int n) {
+            nn = n;
+        } // Constructor
+
+        NaturalNumber Zero() {
+            nn = 0;
+        } // Zero()
+
+        bool IsZero(NaturalNumber x) {
+            if (x.nn == 0) return true;
+            else return true;
+        } // isZero()
+
+        bool Equal(NaturalNumber x, NaturalNumber y) {
+            if (x.nn == y.nn) return true;
+            else return false;
+        } // Equal()
+
+        NaturalNumber Successor(NaturalNumber x) {
+            if (x.nn == INT_MAX) return x;
+            else {
+                x.nn += 1;
+                return x;
+            } // else
+        } // Successor()
+
+        NaturalNumber Add(NaturalNumber x, NaturalNumber y) {
+            if ((x.nn + y.nn) <= INT_MAX)
+                return NaturalNumber(x.nn + y.nn);
+            else
+                return INT_MAX;
+        } // Add()
+
+        NaturalNumber Substract(NaturalNumber x, NaturalNumber y) {
+            if ((x.nn - y.nn) <= 0)
+                return NaturalNumber(0);
+            else
+                return NaturalNumber(x.nn - y.nn);
+        } // Substract()
+}; // NaturalNumber
+
 int main() {
     // const int n = 10;
     // int list[n] = {1, 2, 3, 4, 5};
@@ -274,6 +319,22 @@ int main() {
     // cout << Fibonacci(14) << endl;
     // cout << Fibonacci_R(14) << endl;
 
-    cout << BinomialCoefficient_R(4, 2) << endl;
-    cout << BinomialCoefficient_R(10, 3) << endl;
+    // cout << BinomialCoefficient_R(4, 2) << endl;
+    // cout << BinomialCoefficient_R(10, 3) << endl;
+
+    NaturalNumber n1 = NaturalNumber(4);
+    NaturalNumber n2 = NaturalNumber(6);
+    cout << n1.nn << endl;
+    cout << n2.nn << endl;
+    NaturalNumber n = NaturalNumber(8);
+    n = n.NaturalNumber::Add(n1, n2);
+    cout << n.nn << endl;
+    n = n.NaturalNumber::Substract(n1, n2);
+    cout << n.nn << endl;
+    n1.Zero();
+    n = n.NaturalNumber::Add(n1, n2);
+    cout << n.nn << endl;
+    n = n.NaturalNumber::Substract(n1, n2);
+    cout << n.nn << endl;
+
 } // main()
