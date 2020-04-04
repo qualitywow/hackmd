@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
+#include <climits>
 using namespace std;
 
 void SelectionSort(int list[], int n) {
