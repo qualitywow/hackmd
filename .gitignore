@@ -2,3 +2,5 @@ examples.o
 examples.exe
 book/m.o
 book/m
+book/ex_from_book.o
+book/ex_from_book
