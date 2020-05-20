@@ -17,8 +17,15 @@ int binserch_r(int list[], int searchnum, int left, int right);
 
 void perm(char *list, int i, int n);
 
-int main() {
+//struct {
+//    char name[10];
+//    int age;
+//    float salary;
+//} person;
 
+int main() {
+    person a;
+    a.age = 5;
 } // main()
 
 // Program 1.1: Allocation and deallocation of memory
@@ -211,13 +218,13 @@ float abc(float a, float b, float c) {
 } // abc()
 
 // 1.11 Iterative function for summing a list of numbers
-float sum(float list[], int n) {
+float sum_i(float list[], int n) {
     float tempsum = 0;
     int i;
     for (i = 0; i < n; i++)
         tempsum += list[i];
     return tempsum;
-} // sum()
+} // sum_i()
 
 
 // 1.12 Recursive function for summing a list of numbers
@@ -246,17 +253,17 @@ float sum(float list[], int n) {
 } // sum()
 
 // 1.14 Simple version of Program 1.13
-float sum(float list[], int n) {
+float sum_s(float list[], int n) {
     int count = 0;
     float tmepsum = 0;
     int i;
     for (i = 0; i < n; i++)
         count += 2;
     count += 3;
-} // sum()
+} // sum_s()
 
 // 1.15 Program 1.12 with count statements added
-float sum_r(float list[], int n) {
+float sum_r_cnt(float list[], int n) {
     int count = 0;
     count++; // for if conditional
     if (n) {
@@ -266,10 +273,10 @@ float sum_r(float list[], int n) {
 
     count++; // for return
     return list[0];
-} // sum_r()
+} // sum_r_cnt()
 
 // 1.16 Matrix addtion
-void add(int a[][MAX_SIZE], int b[][MAX_SIZE], 
+void add(int a[][MAX_SIZE], int b[][MAX_SIZE],
          int c[][MAX_SIZE], int rows, int cols) {
     int i, j;
     for (i = 0; i < rows; i++)
@@ -278,7 +285,7 @@ void add(int a[][MAX_SIZE], int b[][MAX_SIZE],
 } // add()
 
 // 1.17 Matrix addition with count statements
-void add(int a[][MAX_SIZE], int b[][MAX_SIZE], 
+void add_cnt(int a[][MAX_SIZE], int b[][MAX_SIZE],
          int c[][MAX_SIZE], int rows, int cols) {
     int count = 0;
     int i, j;
@@ -293,10 +300,10 @@ void add(int a[][MAX_SIZE], int b[][MAX_SIZE],
     } // for
 
     count++; // last time of i for loop
-} // add()
+} // add_cnt()
 
 // 1.18 Simplification of Program 1.17
-void add(int a[][MAX_SIZE], int b[][MAX_SIZE], 
+void add_s(int a[][MAX_SIZE], int b[][MAX_SIZE],
          int c[][MAX_SIZE], int rows, int cols) {
     int count = 0;
     int i,j;
@@ -307,7 +314,7 @@ void add(int a[][MAX_SIZE], int b[][MAX_SIZE],
         count += 2;
     } // for
     count++;
-} // add()
+} // add_s()
 
 // 1.19 Printing out a matrix
 void printMatrix(int matrix[][MAX_SIZE], int rows, int cols) {
@@ -321,7 +328,7 @@ void printMatrix(int matrix[][MAX_SIZE], int rows, int cols) {
 } // printMatrix()
 
 // 1.20: Matrix multiplication function
-void mult(int a[][MAX_SIZE], int b[][MAX_SIZE], 
+void mult(int a[][MAX_SIZE], int b[][MAX_SIZE],
           int c[][MAX_SIZE]) {
     int i, j, k;
     for (i = 0; i < MAX_SIZE; i++) {
@@ -338,7 +345,7 @@ void mult(int a[][MAX_SIZE], int b[][MAX_SIZE],
 // a[] rowsa x colsa
 // b[] colsa x colsb
 // c[] rowsa x colsb
-void prod(int a[][MAX_SIZE], int b[][MAX_SIZE], 
+void prod(int a[][MAX_SIZE], int b[][MAX_SIZE],
           int c[][MAX_SIZE], int rowsa, int colsb, int colsa) {
     int i, j, k;
     for (i = 0; i < rowsa; i++) {
@@ -408,7 +415,7 @@ void transpose(int a[][MAX_SIZE]) {
         // output the magic square
         printf("Magic Square of size %d: \n\n", size);
         for (i = 0; i < size; i++) {
-            for (j = 0; j < size; j++) 
+            for (j = 0; j < size; j++)
                 printf("%5d", square[i][j]);
             printf("\n");
         } // for

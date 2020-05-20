@@ -172,6 +172,7 @@ int binserch(int list[], int searchnum, int left, int right) {
 ```
 
 ##### Program 1.9: Recursive permutation generator
+```
 void perm(char *list, int i, int n) {
     // generate all the permutations of list[i] to list[n]
     int j, temp;
@@ -188,3 +189,84 @@ void perm(char *list, int i, int n) {
         } // for
     } // else
 } // perm()
+```
+## Ch2 Arrays And Structures
+`calloc` can allocate user-specified amount of memory and initializes the allocated memory to 0, then return a pointer which to the start of the allocated memory.
+```
+int * x;
+x = calloc(n, sizeof(int));
+// x[0, ... n-1] are zero.
+```
+`realloc` can resize memory previously allocted by `malloc` or `calloc`.
+```
+realloc(p, s);
+// changes the size of the memory block pointeded at by p to s.
+```
+:speech_balloon: tried `calloc` and `realloc` but cannot tell how they work.
+
+### STRUCTURES AND UNIONS
+```
+struct {
+    char name[10];
+    int age;
+    float salary;
+} person;
+```
+It likes `TYPE person`, the hole struct thing is is data type of the variable `person`.
+
+In C, create a struct as a data type should use `typedef`
+```
+typedef struct person {
+    char name[10];
+    int age;
+    float salary;
+} ;
+// name of the struct can be put after keyword `struct` or after the `}` which close the struct.
+
+// but code below works in C++, you don't have to write `typedef` statement.
+struct person{
+    char name[10];
+    int age;
+    float salary;
+};
+```
+
+```
+typedef struct sexType {
+    enum tagField {female, male} sex;
+    union u {
+        int children; // only female can give birth
+        int beard; // only male have beard
+        // `children` and `beard` won't use at the same time,
+        // so it's a trick to save memory usage.
+    }
+}
+```
+
+It is okay if you define a struct with the statments below.
+```
+// 1. 
+struct {int i, j; float a, b};
+// 2. 
+struct {int i; int j; float a;float b};
+```
+
+#### Self-Referential Structures
+
+```
+typedef struct list {
+    char data;
+    list * link;
+} // list;
+
+list item1, item2, item3;
+
+item1.data = 'a';
+item2.data = 'b';
+item3.data = 'c';
+item1.link = item2.link = item3.link = NULL;
+
+item1.link = &item2;
+item2.link = &item3;
+```
+## Graphs
