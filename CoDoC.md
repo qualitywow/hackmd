@@ -21,7 +21,7 @@
 
 ### 主要貢獻
 :::spoiler
-- To the best of our knowledge, we are the first to concentrate on charging attacks in WRSNs. A Collaborative Denial of Charge (CoDoC) attack, which destructs a network by maximizing event loss through intentionally tempering, modifying and generating fake charging requests, is proposed.
+- To the best of our knowledge, we  are the first to concentrate on charging attacks in WRSNs. A Collaborative Denial of Charge (CoDoC) attack, which destructs a network by maximizing event loss through intentionally tempering, modifying and generating fake charging requests, is proposed.
 - To maximize attacking destructiveness (e.g. maximizing missing point of interests (PoIs) & missing events), we abstract the features of state-of-the-art on-demand charging architecture and develop a generalized model for formalizing the charging scheduling procedure, which provides the fundamental basis for designing charging attacks.
 - To find the best opportunity for launching the DoC attack, a request prediction method (RPM) is proposed. RPM can be used to predict the number of upcoming requests initiating in a certain interval, within which charging demand exceeds a WCV’s charging capability, yielding some nodes’ requests ignored, and exhausted in vain.
 :::
