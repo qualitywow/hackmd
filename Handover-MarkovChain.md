@@ -21,6 +21,25 @@ E: 最大eMBB call個數($M = \frac{C}{be}$)
 Tcall_m: mMTC call 的平均連線持續時間(單位:秒)
 Tcall_e: eMBB call 的平均連線持續時間(單位:秒)
 
+### Input n: new, q: ho
+lambda_n_m: mMTC new call arrival rate
+lambda_n_e: eMBB new call arrival rate
+
+- 新進的UE要HO到下一個cell
+  - Nn_mx: new call mMTC class-x handover call arrival rate
+  - Nn_ex: new call eMBB class-x handover call arrival rate
+- 本來就是HO call，要再HO到下一個cell
+  - Nq_mx: ho call mMTC class-x handover call arrival rate
+  - Nq_ex: ho call eMBB class-x handover call arrival rate
+- 以class-x來看的總體ho call arrival rate
+  - lambda_qx_mx
+  - lambda_qx_ex
+- 三者總和為以device type來看的總體ho call arrival rate
+  - lambda_qx_m
+  - lambda_qx_e
+
+
+
 ### 基礎公式
 - 在cell中的UE進行handover的機率 `Pn(c,x)`  
   (The handover probability for a call in the source cell)  
@@ -57,4 +76,38 @@ Tcall_e: eMBB call 的平均連線持續時間(單位:秒)
       - $= -\frac{L_o}{2}, if \ y = a$
       - $= 0, if \ y = b$
       - $= \frac{L_o}{2}, if \ y = c$
-3. 
+3.  $P_{n,x}^m$: mMTC new call用class-x出去機率
+    $P_{n,x}^e$: eMBB new call用class-x出去機率
+4.  $P_{active,y}^m$, $P_{active,y}^e$: UE要用class-y出去但inact timer還沒數完 // 可以省掉的handover? 
+    $P_{q,y,x}^m$, $P_{q,y,x}^e$: UE用class-y進來，用class-x出去機率
+5.  intra-cell channel holding time
+  - new call UE用class-x出去的intra-cell channel holding time
+    - mMTC: $t_{n,x}^m=min(t_{call,m}+T_{inact},\ t_x)$
+    - eMBB: $t_{n,x}^e=min(t_{call,e}+T_{inact},\ t_x)$
+  - 用class-y進來、class-x出去的intra-cell channel holding time
+    - mMTC: $t_{q,y,x}^m=min(t_{call,m}+T_{inact},\ T_x^y)$ 
+    - eMBB: $t_{q,y,x}^e=min(t_{call,e}+T_{inact},\ T_x^y)$
+  - 上面兩個mean value(用算期望值的方式算)
+    - mMTC: 
+      - $E(t_{n,x}^m) = {(T}_{call,m}+T_{inact})\ast\left(1-P_{n,x}^m\right)$
+      - $E(t_{q,y,x}^m) ={(T}_{call,m}+T_{inact})\ast\left(1-P_{q,y,x}^m\right)$
+    - eMBB: 
+      - $E(t_{n,x}^e) = {(T}_{call,e}+T_{inact})\ast\left(1-P_{n,x}^e\right)$
+      - $E(t_{q,y,x}^e) ={(T}_{call,e}+T_{inact})\ast\left(1-P_{q,y,x}^e\right)$
+6. Handover call arrival rate: 
+   - mMTC: $\lambda_{q,y,x}^m= \frac{N_n^mP_{n,x}^m}{T_L+T_x} + \frac{N_n^qP_{q,y,x}^m}{T_x^y}$
+   - eMBB: $\lambda_{q,y,x}^e= \frac{N_n^eP_{n,x}^e}{T_L+T_x} + \frac{N_n^qP_{q,y,x}^e}{T_x^y}$
+   - 前一個cell的new call數量； 前一個cell的ho call數量
+     - mMTC: $N_n^m$；$N_q^m$
+     - eMBB: $N_n^e$；$N_q^e$
+7. New call arrival rate:
+  - mMTC: $\lambda_n^m$
+  - eMBB: $\lambda_n^e$
+8. $P_{rn,y}^m$: mMTC new call占用channel的機率
+   $P_{rq,y}^m$: mMTC 用class-y進，class-x出的ho call占用channel的機率
+   $P_b^m$: mMTC new call blocking probability
+   $P_f^m$: mMTC ho call failure probability
+   (換成e即為eMBB)
+9. 當UE以class-y進來、class-x出去，intra-cell holding time
+   $\mu_{m,y,x}^-1 = P_{rn,y}^mE(t_{n,x}^m)+P_{rq,y}^mE(t_{q,y,x}^m)$
+   $\mu_{e,y,x}^-1 = P_{rn,y}^eE(t_{n,x}^e)+P_{rq,y}^eE(t_{q,y,x}^e)$
